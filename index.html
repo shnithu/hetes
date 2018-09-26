@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+    <head>
+        <title>Random generator</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, user-scalable=0"/>
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+
+    </head>
+    <body ng-app="hetesApp" ng-controller="mainController">
+        <div class="wrapper clearfix content">
+            <div class="container">
+		  
+              <table class="table table-bordered table-striped" width="100%" >
+                <tbody>
+                  <tr ng-repeat="roll in table">
+                    <td valign="top">{{ roll.osz0 }}</td>
+                    <td valign="top">{{ roll.osz1 }}</td>
+                    <td valign="top">{{ roll.osz2 }}</td>
+                    <td valign="top">{{ roll.osz3 }}</td>
+                    <td valign="top">{{ roll.osz4 }}</td>
+                    <td valign="top">{{ roll.osz5 }}</td>
+                    <td valign="top">{{ roll.osz6 }}</td>
+                  </tr>
+				  <tr>
+                    <td valign="top">{{ cnt }}</td>
+                    <td valign="top">{{ hay }}</td>
+				  </tr>
+			  </tbody>
+              </table>
+            </div>
+        </div>
+
+		
+        <script src="js/vendor/angular-1.4.3.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
