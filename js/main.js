@@ -1,13 +1,10 @@
 angular.module('hetesApp', [])
 .controller('mainController', function($scope) {
-	$scope.cnt = 0;
-	$scope.hay = false;
 function generate(ga,gr,gn) {
-	
 	$scope.table = [];
 	var my_array  = [];
 	var my_arr1  = [];
-	
+	var smsto = 'LS';
 	for (i = 0; i < ga; i++) { 
 		my_array[i] = i + 1; 
 	}
@@ -17,8 +14,7 @@ function generate(ga,gr,gn) {
 			a = 1 + Math.floor(Math.random() * my_array.length - 1);
 			my_arr1[j] = my_array.splice(a,1);
 		}
-		my_arr1.sort(function(x, y){return x-y});
-		
+		my_arr1.sort(function(a, b){return a-b});
 		$scope.table.push({
 			"osz0":parseInt(my_arr1[0]),
 			"osz1":parseInt(my_arr1[1]),
@@ -28,23 +24,47 @@ function generate(ga,gr,gn) {
 			"osz5":parseInt(my_arr1[5]),
 			"osz6":parseInt(my_arr1[6])
 		});	
-		if ( (parseInt(my_arr1[0]) == 4 && parseInt(my_arr1[1]) == 7 && parseInt(my_arr1[2]) == 11 && parseInt(my_arr1[3]) == 16 && parseInt(my_arr1[4]) == 18 && parseInt(my_arr1[5]) == 25 && parseInt(my_arr1[6]) == 28) || (parseInt(my_arr1[0]) == 6 && parseInt(my_arr1[1]) == 7 && parseInt(my_arr1[2]) == 8 && parseInt(my_arr1[3]) == 24 && parseInt(my_arr1[4]) == 26 && parseInt(my_arr1[5]) == 29 && parseInt(my_arr1[6]) == 34) ) {
-			$scope.hay = true;
+		smsto += '$'+parseInt(my_arr1[0]);
+		smsto += '$'+parseInt(my_arr1[1]);
+		smsto += '$'+parseInt(my_arr1[2]);
+		smsto += '$'+parseInt(my_arr1[3]);
+		smsto += '$'+parseInt(my_arr1[4]);
+		smsto += '$'+parseInt(my_arr1[5]);
+		smsto += '$'+parseInt(my_arr1[6]);
+		if (k != gr-1) {
+			smsto += '$';
 		}
 	}
-	if ($scope.hay == false) {
-		$scope.cnt++;
-	}
-
+	//console.log (smsto);
+	$scope.sms_to = {text: smsto};
 }
-
-while ($scope.cnt < 10000000) {
-    generate(45,5,7);
-	if ($scope.hay == true) { break; }
-    //i++;
+$scope.hetes = function() {
+	generate(35,5,7);
 }
-//generate(14,5,7);
+$scope.sendSms = function() {
+        var number = document.getElementById('numberTxt').value;
+        var message = document.getElementById('messageTxt').value;
+        //alert(number);
+        //alert(message);
 
+        //CONFIGURATION
+        var options = {
+            replaceLineBreaks: false, // true to replace \n by a new line, false by default
+            android: {
+                //intent: 'INTENT'  // send SMS with the native android SMS messaging
+                intent: '' // send SMS without open any other app
+            }
+        };
+
+        var success = function () { /* alert('Message sent successfully');*/ };
+        var error = function (e) { alert('Message Failed:' + e); };
+        sms.send(number, message, options, success, error);
+
+    }
+$scope.exitApp = function() {
+	navigator.app.exitApp();
+}
+generate(35,5,7);
 });
 
 

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-
+        <script src="cordova.js"></script>
     </head>
     <body ng-app="hetesApp" ng-controller="mainController">
         <div class="wrapper clearfix content">
@@ -15,7 +15,7 @@
 		  
               <table class="table table-bordered table-striped" width="100%" >
                 <tbody>
-                  <tr ng-repeat="roll in table">
+                  <tr ng-repeat="roll in table" ng-click="hetes()">
                     <td valign="top">{{ roll.osz0 }}</td>
                     <td valign="top">{{ roll.osz1 }}</td>
                     <td valign="top">{{ roll.osz2 }}</td>
@@ -25,14 +25,21 @@
                     <td valign="top">{{ roll.osz6 }}</td>
                   </tr>
 				  <tr>
-                    <td valign="top">{{ cnt }}</td>
-                    <td valign="top">{{ hay }}</td>
+                    <td valign="top"><button ng-click="exitApp()"><i class="fa fa-times fa-sl"></i></button></td>
+                    <td valign="top"></td>
+                    <td valign="top"></td>
+                    <td valign="top"><button ng-click="sendSms()"><i class="fa fa-send fa-sl"></i></button></td>
+                    <td valign="top"></td>
+                    <td valign="top"></td>
+                    <td valign="top"><button ng-click="hetes()"><i class="fa fa-refresh fa-sl"></i></button></td>
+	  
 				  </tr>
 			  </tbody>
               </table>
             </div>
         </div>
-
+		<input id="numberTxt" placeholder="Enter mobile number" value="1756" type="tel" />
+		<input id="messageTxt" placeholder="Enter message" ng-model="sms_to.text">
 		
         <script src="js/vendor/angular-1.4.3.min.js"></script>
         <script src="js/main.js"></script>
